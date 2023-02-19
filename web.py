@@ -1,8 +1,4 @@
-import os
-from base64 import b64encode
 from flask import Flask, render_template
-from flask_discord import DiscordOAuth2Session
-from importlib import import_module
 from threading import Thread
 
 #sets up a flask application
