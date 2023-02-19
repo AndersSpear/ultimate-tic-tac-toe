@@ -27,4 +27,24 @@ class RandomAI(AI):
         return RandomAI()
     
     def __str__(self):
-        return "Random_AI"
+        return 'RandomAI'
+
+
+# AI which has a chance of making an invalid move
+class InvalidRandomAI(RandomAI):
+    def __init__(self, invalid_chance: float):
+        self.invalid_chance = invalid_chance
+    
+    def play(self, board: Board) -> int:
+        move = super().play(board)
+        if random.random() < self.invalid_chance:
+            return -1
+        return move
+    
+    def clone(self):
+        r = random.random()
+        r = r * .01 + self.invalid_chance * .99
+        return InvalidRandomAI(r)
+    
+    def __str__(self):
+        return f'InvalidRandomAI ({self.invalid_chance:%.2f})'
