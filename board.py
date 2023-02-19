@@ -10,21 +10,19 @@ class Subboard:
     def __init__(self):
         self.board = [0, 0, 0, 0, 0, 0, 0, 0, 0]
         self.winner = 0
-    
-    def get_valid_moves(self):
-        if self.winner != 0:
-            return []
-        return [i for i,j in enumerate(self.board) if j == 0]
+        self.valid_moves = [0, 1, 2, 3, 4, 5, 6, 7, 8]
     
     def make_move(self, move: int, player: int):
-        if not move in self.get_valid_moves():
+        if self.board[move] != 0:
             return False
         
         self.board[move] = player
+        self.valid_moves.remove(move)
         
         for a,b,c in lines:
             if self.board[a] == self.board[b] == self.board[c] != 0:
                 self.winner = self.board[a]
+                self.valid_moves = []
         
         return True
 
@@ -42,9 +40,9 @@ class Board:
             return []
         
         if self.next_square in (0,1,2,3,4,5,6,7,8):
-            return [self.next_square * 9 + i for i in self.board[self.next_square].get_valid_moves()]
+            return [self.next_square * 9 + i for i in self.board[self.next_square].valid_moves]
         else:
-            return [i*9 + j for i,b in enumerate(self.board) for j in b.get_valid_moves()]
+            return [i*9 + j for i,b in enumerate(self.board) for j in b.valid_moves]
     
     def make_move(self, move: int) -> bool:
         # make sure it's a valid move
