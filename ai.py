@@ -1,11 +1,11 @@
 from abc import ABC, abstractmethod
 
-from board import Main_board
+from board import Board
 
 class AI(ABC):
     
     @abstractmethod
-    def play(self, board: Main_board) -> int:
+    def play(self, board: Board) -> int:
         ...
     
     @abstractmethod
@@ -17,7 +17,7 @@ class AI(ABC):
 import random
 class RandomAI(AI):
     
-    def play(self, board: Main_board) -> int:
+    def play(self, board: Board) -> int:
         valid_moves = board.get_valid_moves()
         if valid_moves:
             return random.choice(valid_moves)
