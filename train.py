@@ -18,8 +18,9 @@ def run_generation(ai_list: list[AI]) -> list[AI]:
 def play_game(ai1: AI, ai2: AI) -> AI:
     board = Board()
     while True:
-        if not board.make_move((ai1, ai2)[board.next_player - 1].play(board)):
-            return (ai1, ai2)[2 - board.next_player]
+        move = (ai1, ai2)[board.next_player - 1].play(board)
+        if not board.make_move(move):
+            return board.winner or 2 - board.next_player
 
 #generates list of N ai's
 def generate_ai(count: int) -> list[AI]:
