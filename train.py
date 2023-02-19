@@ -1,14 +1,13 @@
 from board import Board
-from ai import AI, RandomAI
+from ai import AI, RandomAI, InvalidRandomAI
 import random
 
 
 #takes in a list of ai's, pairs them up and returns a list of the winners
 def run_generation(ai_list: list[AI]) -> list[AI]:
     results = []
-    i = 0
-    while i < len(ai_list)-1:
-        winner = play_game(ai_list[i], ai_list[i+1])
+    for i in range(0, len(ai_list), 2):
+        winner = play_game(ai_list[i], ai_list[i + 1])
         results.append(winner)
         results.append(winner.clone())
     random.shuffle(results)
@@ -25,4 +24,4 @@ def play_game(ai1: AI, ai2: AI) -> AI:
 
 #generates list of N ai's
 def generate_ai(count: int) -> list[AI]:
-    return [RandomAI() for _ in range(count)]
+    return [InvalidRandomAI(.5) for _ in range(count)]

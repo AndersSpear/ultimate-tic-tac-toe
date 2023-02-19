@@ -26,7 +26,7 @@ class RandomAI(AI):
     def clone(self):
         return RandomAI()
     
-    def __str__(self):
+    def __repr__(self):
         return 'RandomAI'
 
 
@@ -46,5 +46,5 @@ class InvalidRandomAI(RandomAI):
         r = r * .01 + self.invalid_chance * .99
         return InvalidRandomAI(r)
     
-    def __str__(self):
-        return f'InvalidRandomAI ({self.invalid_chance:%.2f})'
+    def __repr__(self):
+        return f'InvalidRandomAI ({self.invalid_chance:.2f})'
