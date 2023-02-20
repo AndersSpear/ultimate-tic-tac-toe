@@ -2,6 +2,15 @@ from abc import ABC, abstractmethod
 
 from board import Board
 
+
+def lerp(a: float, b: float, t: float):
+    return a + (b - a) * t
+
+
+
+
+
+
 class AI(ABC):
     
     @abstractmethod
@@ -42,8 +51,8 @@ class InvalidRandomAI(RandomAI):
         return move
     
     def clone(self):
-        r = random.random()
-        r = r * .01 + self.invalid_chance * .99
+        r = lerp(self.invalid_chance, random.random(), .1)
+        r = max(0, min(r, 1))
         return InvalidRandomAI(r)
     
     def __repr__(self):

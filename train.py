@@ -15,12 +15,12 @@ def run_generation(ai_list: list[AI]) -> list[AI]:
     return ai_list
 
 #takes two ai's, plays a game between them, and returns the winner
-def play_game(ai1: AI, ai2: AI) -> AI:
+def play_game(ai1: AI, ai2: AI) -> int:
     board = Board()
     while True:
         move = (ai1, ai2)[board.next_player - 1].play(board)
         if not board.make_move(move):
-            return board.winner or 2 - board.next_player
+            return board.winner or 3 - board.next_player
 
 #generates list of N ai's
 def generate_ai(count: int) -> list[AI]:
