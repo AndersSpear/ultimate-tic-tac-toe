@@ -1,5 +1,5 @@
 from board import Board
-from ai import AI, RandomAI, InvalidRandomAI
+from ai import AI, RandomAI, InvalidRandomAI, WeightedAI
 import random
 
 
@@ -24,4 +24,4 @@ def play_game(ai1: AI, ai2: AI) -> int:
 
 #generates list of N ai's
 def generate_ai(count: int) -> list[AI]:
-    return [InvalidRandomAI(.5) for _ in range(count)]
+    return [RandomAI() for _ in range(count // 2)] + [WeightedAI() for _ in range(count // 2)]
