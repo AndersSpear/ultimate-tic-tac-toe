@@ -7,9 +7,9 @@ import web
 from ai import RandomAI
 import train
 
-ai_list = train.generate_ai(200)
+ai_list = train.generate_ai(100)
 for _ in range(100):
-    for _ in range(10):
+    for _ in range(25):
         ai_list = train.run_generation(ai_list)
     # count the number of random ai's there are
     r = len([1 for ai in ai_list if type(ai) == train.RandomAI])
@@ -23,7 +23,7 @@ for _ in range(100):
     randai = RandomAI()
     
     wins = 0
-    for i in range(1000):
+    for i in range(100):
         wins += int(train.play_game(ai_list[0], randai) == 1)
     print(f'{wins} wins against random ai')
     

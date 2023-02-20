@@ -24,4 +24,4 @@ def play_game(ai1: AI, ai2: AI) -> int:
 
 #generates list of N ai's
 def generate_ai(count: int) -> list[AI]:
-    return [RandomAI() for _ in range(count // 2)] + [WeightedAI() for _ in range(count // 2)]
+    return [RandomAI() for _ in range(count // 2)] + [WeightedAI(5510, 2840) for _ in range(count // 2)]
